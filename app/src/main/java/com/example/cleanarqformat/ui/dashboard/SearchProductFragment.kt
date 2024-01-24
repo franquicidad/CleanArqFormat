@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.cleanarqformat.databinding.FragmentDashboardBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchProductFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
+    private val searchProductViewModel by viewModels<SearchProductViewModel>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,8 +26,6 @@ class SearchProductFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val searchProductViewModel =
-            ViewModelProvider(this).get(SearchProductViewModel::class.java)
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
