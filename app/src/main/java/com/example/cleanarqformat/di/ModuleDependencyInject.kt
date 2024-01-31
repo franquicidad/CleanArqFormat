@@ -1,6 +1,8 @@
 package com.example.cleanarqformat.di
 
+import com.example.cleanarqformat.data.SearchRepositoryImplementation
 import com.example.cleanarqformat.data.Services
+import com.example.cleanarqformat.domain.SearchRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,5 +27,11 @@ object ModuleDependencyInject {
     @Singleton
     fun provideService(retrofit: Retrofit): Services{
         return retrofit.create(Services::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchRepository(services: Services): SearchRepository{
+        return SearchRepositoryImplementation(services)
     }
 }
