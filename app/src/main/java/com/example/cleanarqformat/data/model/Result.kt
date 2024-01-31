@@ -1,8 +1,10 @@
 package com.example.cleanarqformat.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Result(
     val accepts_mercadopago: Boolean,
-    val attributes: List<Attribute>,
+    @SerializedName("attributes")val caracteris: List<Attribute>,
     val available_quantity: Int,
     val buying_mode: String,
     val catalog_listing: Boolean,
