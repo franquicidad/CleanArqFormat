@@ -13,13 +13,31 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.cleanarqformat.ui.dashboard.SearchProductFragment"
+        android:name="com.example.cleanarqformat.ui.buscar.SearchProductFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.cleanarqformat.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.cleanarqformat.ui.DetailFragment"
+        android:label="@string/product"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_navigation_dashboard2"
+            app:destination="@id/navigation_dashboard"
+            app:popUpTo="@id/navigation_dashboard" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_navigation_dashboard"
+        app:destination="@id/navigation_dashboard"
+        app:popUpTo="@id/navigation_dashboard" />
 </navigation>
