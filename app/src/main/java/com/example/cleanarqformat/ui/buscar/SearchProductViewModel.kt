@@ -1,4 +1,4 @@
-package com.example.cleanarqformat.ui.dashboard
+package com.example.cleanarqformat.ui.buscar
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,15 +26,14 @@ class SearchProductViewModel @Inject constructor(private val useCase: SearchUseC
 
     fun getProductSearchByQuery(query: String): List<ModelProduct> {
         viewModelScope.launch(Dispatchers.IO) {
-            _states.value = AppStates.Loading
             withContext(Dispatchers.IO) {
-                queryResult = useCase.invoke(query)!!
+                _states.value = AppStates.Loading
 
-                if (queryResult != null) {
-                    _states.value = AppStates.Success(queryResult)
-                }else{
-                    _states.value = AppStates.Error("Ha ocurrido un error")
-                }
+                queryResult = useCase.invoke(query)
+
+                _states.value = AppStates.Success(queryResult)
+                _queryModelList.value = queryResult
+
             }
         }
         return queryResult
